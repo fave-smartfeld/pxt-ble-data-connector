@@ -3,7 +3,8 @@
     "version": "0.0.1",
     "description": "Bluetooth Low Energy (BLE) Data Connector",
     "dependencies": {
-        "core": "*"
+        "core": "*",
+        "bluetooth": "*"
     },
     "files": [
         "README.md",
@@ -21,5 +22,16 @@
     "supportedTargets": [
         "microbit"
     ],
-    "preferredEditor": "tsprj"
+    "preferredEditor": "tsprj",
+    "yotta": {
+        "config": {
+            "microbit-dal": {
+                "bluetooth": {
+                    "open": 1,
+                    "pairing_mode": 0,
+                    "whitelist": 0
+                }
+            }
+        }
+    }
 }

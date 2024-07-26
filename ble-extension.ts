@@ -16,4 +16,12 @@ namespace SmartfeldBLE {
     export function getInfo(): string {
         return "BLE Data Connector Info";
     }
+
+    /**
+     * start BLE Temperature Service
+     */
+    //% blockId="startTemperatureService" block="start BLE Temperature Service"
+    export function startUartService() : void {
+        bluetooth.startUartService();
+    }
 }
