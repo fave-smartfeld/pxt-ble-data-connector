@@ -21,7 +21,7 @@ namespace SmartfeldBLE {
      * start BLE Temperature Service
      */
     //% blockId="startTemperatureService" block="start BLE Temperature Service"
-    export function startUartService() : void {
-        bluetooth.startUartService();
+    export function startTemperatureService() : void {
+        bluetooth.startTemperatureService();
     }
 }
