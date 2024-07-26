@@ -3,8 +3,7 @@
     "version": "0.0.1",
     "description": "Bluetooth Low Energy (BLE) Data Connector",
     "dependencies": {
-        "core": "*",
-        "bluetooth": "*"
+        "core": "*"
     },
     "files": [
         "README.md",
