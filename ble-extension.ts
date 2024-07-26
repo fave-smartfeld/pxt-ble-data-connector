@@ -8,13 +8,30 @@
  */
 //% weight=0 color=#0082FC icon="\uf294" block="BLE Data Connector"
 namespace SmartfeldBLE {
+    let name : string = "Unknown";
 
     /**
      * gets info
      */
     //% blockId="getInfo" block="get BLE Info"
     export function getInfo(): string {
-        return "BLE Data Connector Info";
+        return "Micro:bit " + name;
+    }
+    
+    /**
+     * gets device name
+     */
+    //% blockId="getDeviceName" block="get Device Name"
+    export function getDeviceName(): string {
+        return name;
+    }
+
+    /**
+     * sets device name
+     */
+    //% blockId="setDeviceName" block="set Device Name | $deviceName"
+    export function setDeviceName(deviceName: string): void {
+        name = deviceName;
     }
 
     /**
@@ -24,4 +41,5 @@ namespace SmartfeldBLE {
     export function startTemperatureService() : void {
         bluetooth.startTemperatureService();
     }
+
 }
