@@ -1,6 +1,6 @@
 {
     "name": "pxt-ble-data-connector",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "description": "Bluetooth Low Energy (BLE) Data Connector",
     "dependencies": {
         "core": "*",
