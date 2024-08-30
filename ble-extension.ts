@@ -3,17 +3,24 @@
 * created by: Verena Fastenbauer
 */
 
-/**
- * Bluetooth Low Energy (BLE) Data Connector
- */
-//% weight=0 color=#0082FC icon="\uf294" block="BLE Data Connector"
-namespace SmartfeldBLE {
 
-    export enum SensorValueType {
-        Temperature,
-        Humidity,
-        CO2
-    }
+/**
+ * Different Value Types for CO2 Sensor
+ */
+enum CO2SensorValueTypes {
+    //% block="Temperature"
+    Temperature = 0,
+    //% block="Humidity"
+    Humidity = 1,
+    //% block="CO2"
+    CO2 = 2
+}
+
+/**
+ * Smartfeld Bluetooth Low Energy (BLE) Data Connector
+ */
+//% weight=0 color=#2699BF icon="\uf294" block="Smartfeld BLE Data Connector"
+namespace SmartfeldBLE {
 
     let name : string = "Unknown";
     let scd30 = new SCD30();
@@ -81,16 +88,16 @@ namespace SmartfeldBLE {
      * gets sensor value of Smartfeld CO2 Sensor
      */
     //% blockId="getSensorValue" block="get sensor of CO2 Sensor"
-    export function getSensorValue(sensorType : SensorValueType): number {
+    export function getSensorValue(sensorType: CO2SensorValueTypes): number {
         scd30.readMeasurement();
         switch (sensorType) {
-            case SensorValueType.Temperature:
+            case CO2SensorValueTypes.Temperature:
                 return scd30.readTemperature();
                 break;
-            case SensorValueType.Humidity:
+            case CO2SensorValueTypes.Humidity:
                 return scd30.readHumidity();
                 break;
-            case SensorValueType.CO2:
+            case CO2SensorValueTypes.CO2:
                 return scd30.readCO2();
                 break;
             default:
