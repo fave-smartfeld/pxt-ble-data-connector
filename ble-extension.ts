@@ -56,22 +56,18 @@ namespace SmartfeldBLE {
     export function startBLEContinousMeasurementOfCO2Sensor() : void {
         control.inBackground(() => {
             scd30.enableContinuousMeasurement();
-            while (true) {                
+            while (true) {
                 scd30.readMeasurement();
 
-                const data = { 
+                const data = {
                     temperature: scd30.readTemperature(),
                     humidity: scd30.readHumidity(),
-                    co2: scd30.readCO2()
+                    co2: scd30.readCO2(),
                 };
 
-                //bluetooth.uartWriteString(JSON.stringify(data));
-
-                bluetooth.uartWriteString(JSON.stringify({ temp: scd30.readTemperature() }));
-                bluetooth.uartWriteString(JSON.stringify({ hum: scd30.readHumidity() }));
-                bluetooth.uartWriteString(JSON.stringify({ co2: scd30.readCO2() }));
-
-                basic.pause(3000)
+                bluetooth.uartWriteString(JSON.stringify(data));
+                
+                basic.pause(2000)
             }
         })
     }
