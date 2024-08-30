@@ -87,7 +87,7 @@ namespace SmartfeldBLE {
     /**
      * gets sensor value of Smartfeld CO2 Sensor
      */
-    //% blockId="getSensorValue" block="get sensor of CO2 Sensor"
+    //% blockId="getSensorValue" block="get value of CO2 Sensor | $sensorType"
     export function getSensorValue(sensorType: CO2SensorValueTypes): number {
         scd30.readMeasurement();
         switch (sensorType) {
