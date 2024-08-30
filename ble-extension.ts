@@ -9,6 +9,7 @@
 //% weight=0 color=#0082FC icon="\uf294" block="BLE Data Connector"
 namespace SmartfeldBLE {
     let name : string = "Unknown";
+    let scd30 = new SCD30();
 
     /**
      * gets info
@@ -35,11 +36,19 @@ namespace SmartfeldBLE {
     }
 
     /**
-     * start BLE Temperature Service
+     * start Smartfeld BLE Service
      */
-    //% blockId="startTemperatureService" block="start BLE Temperature Service"
-    export function startTemperatureService() : void {
-        bluetooth.startTemperatureService();
+    //% blockId="startService" block="start Smartfeld BLE Service"
+    export function startService() : void {
+        scd30.enableContinuousMeasurement();
+    }
+
+    /**
+     * gets sensor value
+     */
+    //% blockId="getSensorValue" block="get sensor value"
+    export function getSensorValue(): number{
+        return scd30.temperature;
     }
 
 }
