@@ -19,7 +19,7 @@ enum CO2SensorValueTypes {
 /**
  * Smartfeld Bluetooth Low Energy (BLE) Data Connector
  */
-//% weight=0 color=#2699BF icon="\uf294" block="Smartfeld BLE Data Connector"
+//% weight=0 color=#0fbc11 icon="\uf294" block="Smartfeld BLE Data Connector"
 namespace SmartfeldBLE {
 
     let name : string = "Unknown";
@@ -53,35 +53,23 @@ namespace SmartfeldBLE {
      * start Smartfeld CO2 Continous Measurement BLE Service
      */
     //% blockId="startService" block="start Smartfeld CO2 Continous Measurement BLE Service"
-    export function startCO2ContinousMeasurementService() : void {
-        scd30.enableContinuousMeasurement();
-    }
+    export function startBLEContinousMeasurementOfCO2Sensor() : void {
+        control.inBackground(() => {
+            scd30.enableContinuousMeasurement();
+            while (true) {
+                scd30.readMeasurement();
 
-    /**
-     * gets temperature value of Smartfeld CO2 Sensor
-     */
-    //% blockId="getTemperature" block="get temperature of CO2 Sensor"
-    export function getTemperature(): number{
-        scd30.readMeasurement();
-        return scd30.readTemperature();
-    }
+                const data = {
+                    temperature: scd30.readTemperature(),
+                    humidity: scd30.readHumidity(),
+                    co2: scd30.readCO2(),
+                };
 
-    /**
-     * gets humidity value of Smartfeld CO2 Sensor
-     */
-    //% blockId="getHumidity" block="get humidity of CO2 Sensor"
-    export function getHumidity(): number {
-        scd30.readMeasurement();
-        return scd30.readHumidity();
-    }
-
-    /**
-     * gets CO2 value of Smartfeld CO2 Sensor
-     */
-    //% blockId="getCO2" block="get CO2 of CO2 Sensor"
-    export function getCO2(): number {
-        scd30.readMeasurement();
-        return scd30.readCO2();
+                bluetooth.uartWriteString(JSON.stringify(data));
+                
+                basic.pause(2000)
+            }
+        })
     }
 
     /**
@@ -104,4 +92,6 @@ namespace SmartfeldBLE {
                 return 0;
         }
     }
+
+
 }
