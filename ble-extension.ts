@@ -9,7 +9,7 @@
 //% weight=0 color=#0082FC icon="\uf294" block="BLE Data Connector"
 namespace SmartfeldBLE {
 
-    enum ValueType {
+    export enum SensorValueType {
         Temperature,
         Humidity,
         CO2
@@ -77,4 +77,24 @@ namespace SmartfeldBLE {
         return scd30.readCO2();
     }
 
+    /**
+     * gets sensor value of Smartfeld CO2 Sensor
+     */
+    //% blockId="getSensorValue" block="get sensor of CO2 Sensor"
+    export function getSensorValue(sensorType : SensorValueType): number {
+        scd30.readMeasurement();
+        switch (sensorType) {
+            case SensorValueType.Temperature:
+                return scd30.readTemperature();
+                break;
+            case SensorValueType.Humidity:
+                return scd30.readHumidity();
+                break;
+            case SensorValueType.CO2:
+                return scd30.readCO2();
+                break;
+            default:
+                return 0;
+        }
+    }
 }
