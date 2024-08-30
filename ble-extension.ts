@@ -48,7 +48,8 @@ namespace SmartfeldBLE {
      */
     //% blockId="getSensorValue" block="get sensor value"
     export function getSensorValue(): number{
-        return scd30.temperature;
+        scd30.readMeasurement();
+        return scd30.readTemperature();
     }
 
 }
