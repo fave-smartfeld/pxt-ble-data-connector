@@ -8,6 +8,13 @@
  */
 //% weight=0 color=#0082FC icon="\uf294" block="BLE Data Connector"
 namespace SmartfeldBLE {
+
+    enum ValueType {
+        Temperature,
+        Humidity,
+        CO2
+    }
+
     let name : string = "Unknown";
     let scd30 = new SCD30();
 
@@ -36,20 +43,38 @@ namespace SmartfeldBLE {
     }
 
     /**
-     * start Smartfeld BLE Service
+     * start Smartfeld CO2 Continous Measurement BLE Service
      */
-    //% blockId="startService" block="start Smartfeld BLE Service"
-    export function startService() : void {
+    //% blockId="startService" block="start Smartfeld CO2 Continous Measurement BLE Service"
+    export function startCO2ContinousMeasurementService() : void {
         scd30.enableContinuousMeasurement();
     }
 
     /**
-     * gets sensor value
+     * gets temperature value of Smartfeld CO2 Sensor
      */
-    //% blockId="getSensorValue" block="get sensor value"
-    export function getSensorValue(): number{
+    //% blockId="getTemperature" block="get temperature of CO2 Sensor"
+    export function getTemperature(): number{
         scd30.readMeasurement();
         return scd30.readTemperature();
+    }
+
+    /**
+     * gets humidity value of Smartfeld CO2 Sensor
+     */
+    //% blockId="getHumidity" block="get humidity of CO2 Sensor"
+    export function getHumidity(): number {
+        scd30.readMeasurement();
+        return scd30.readHumidity();
+    }
+
+    /**
+     * gets CO2 value of Smartfeld CO2 Sensor
+     */
+    //% blockId="getCO2" block="get temperature of CO2 Sensor"
+    export function getCO2(): number {
+        scd30.readMeasurement();
+        return scd30.readCO2();
     }
 
 }
