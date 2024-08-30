@@ -60,6 +60,7 @@ namespace SmartfeldBLE {
                 scd30.readMeasurement();
 
                 const data = {
+                    device: name,
                     temperature: scd30.readTemperature(),
                     humidity: scd30.readHumidity(),
                     co2: scd30.readCO2(),
